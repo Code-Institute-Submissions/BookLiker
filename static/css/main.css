@@ -1,0 +1,38 @@
+.container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+label {
+  color: white;
+}
+
+body {
+  background-image: url("../images/main-bg.jpg");
+}
+
+.nav {
+  margin-bottom: 10px;
+}
+
+a.nav-link {
+  color: white;
+  margin-top: -10px;
+}
+
+a.nav-link:hover {
+  color: grey;
+}
+
+ul.nav {
+  padding-top: 10px;
+  background-color: #2f374e;
+}
+
+a {
+  color: white;
+}
+
+i {
+  background-color: blue;
+}
