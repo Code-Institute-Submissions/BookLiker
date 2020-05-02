@@ -11,9 +11,9 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Genre</a>
             <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Fantasy</a>
-            <a class="dropdown-item" href="#">Thriller</a>
-            <a class="dropdown-item" href="#">Another genre</a>
+            {% for genre in genres %}
+			<a class="dropdown-item" href="#">{{genre.genre}}</a>
+            {% endfor %}
         </li>
         <li class="nav-item">
         <a class="nav-link" href="{{ url_for('add_book') }}">Add New Book</a>

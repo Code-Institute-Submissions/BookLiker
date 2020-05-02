@@ -19,7 +19,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_books')
 def get_books():
-    return render_template("books.html", books=mongo.db.Books.find())
+    return render_template("books.html", books=mongo.db.Books.find(), genres=mongo.db.Genres.find())
 
 
 # Creating like function what updates one book entry using it's _id
@@ -28,7 +28,7 @@ def get_books():
 def like_this(book_id):
     book = mongo.db.Books.update_one(
         {"_id": ObjectId(book_id)}, {"$inc": {'likes': 1}})
-    return render_template("books.html", books=mongo.db.Books.find())
+    return redirect(url_for("get_books"))
 
 
 # Creating dislike function what updates one book entry using it's _id
@@ -37,7 +37,7 @@ def like_this(book_id):
 def dislike_this(book_id):
     book = mongo.db.Books.update_one({"_id": ObjectId(book_id)}, {
                                      "$inc": {'dislikes': 1}})
-    return render_template("books.html", books=mongo.db.Books.find())
+    return redirect(url_for("get_books"))
 
 
 # Define route for about book using the book's id from mongo
