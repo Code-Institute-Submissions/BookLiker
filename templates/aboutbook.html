@@ -6,7 +6,26 @@
 </head>
 <body>
     {% block content %}
-    <h1>About {{book.title}}</h1>
+    <div class="card mb-3" style="max-width: fit-content;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img
+            src="{{book.image_url}}"
+            class="card-img"
+            alt="Book Cover Image"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h2 class="card-title" style="text-align: center;">{{book.title}}</h2>
+            <h2 style="text-align: center;">Written by {{book.author}}</h2>
+            <p class="card-text" style="font-size: x-large;">
+              {{book.description}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
     {% endblock %}
 </body>
 </html>
