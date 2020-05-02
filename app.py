@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 
 # Define mongo db connection using srv
-app.config["MONGO_URI"]= os.environ.get('MONGO_URI')
+app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 
 
 # Define mongo connection method using PyMongo
@@ -26,7 +26,8 @@ def get_books():
 # use the update_one method with the $inc operator
 @app.route('/like_this/<book_id>', methods=["GET", "POST"])
 def like_this(book_id):
-    book=mongo.db.Books.update_one({"_id": ObjectId(book_id)}, { "$inc": { 'likes': 1 } })
+    book = mongo.db.Books.update_one(
+        {"_id": ObjectId(book_id)}, {"$inc": {'likes': 1}})
     return render_template("books.html", books=mongo.db.Books.find())
 
 
@@ -34,7 +35,8 @@ def like_this(book_id):
 # use the update_one method with the $inc operator
 @app.route('/dislike_this/<book_id>', methods=["GET", "POST"])
 def dislike_this(book_id):
-    book=mongo.db.Books.update_one({"_id": ObjectId(book_id)}, { "$inc": { 'dislikes': 1 } })
+    book = mongo.db.Books.update_one({"_id": ObjectId(book_id)}, {
+                                     "$inc": {'dislikes': 1}})
     return render_template("books.html", books=mongo.db.Books.find())
 
 
@@ -42,8 +44,8 @@ def dislike_this(book_id):
 # using the find_one query with the _id
 @app.route('/about_book/<book_id>')
 def about_book(book_id):
-    return render_template("aboutbook.html", 
-    book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}))
+    return render_template("aboutbook.html",
+                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}))
 
 
 # Create add_book method to redirect to the form page where can add new book to the library
@@ -64,22 +66,22 @@ def insert_book():
 # Create edit book where can update or delete a book methods can be called from
 @app.route('/edit_book/<book_id>', methods=["GET"])
 def edit_book(book_id):
-    return render_template("editbook.html", 
-    book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}))
+    return render_template("editbook.html",
+                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}))
 
 # Create update book method so can be called from the edit book page
 @app.route('/update_book/<book_id>', methods=["POST"])
 def update_book(book_id):
-    book=mongo.db.Books.update_one(
-        {"_id": ObjectId(book_id)}, 
-        { "$set": {
-            'title':request.form.get('title'),
-            'author':request.form.get('author'),
-            'description':request.form.get('description'),
-            'url_to_buy':request.form.get('url_to_buy'),
-            'image_url':request.form.get('image_url'),
-            'genre':"",
-        } }
+    book = mongo.db.Books.update_one(
+        {"_id": ObjectId(book_id)},
+        {"$set": {
+            'title': request.form.get('title'),
+            'author': request.form.get('author'),
+            'description': request.form.get('description'),
+            'url_to_buy': request.form.get('url_to_buy'),
+            'image_url': request.form.get('image_url'),
+            'genre': "",
+        }}
     )
     return redirect(url_for("get_books"))
 
@@ -91,8 +93,22 @@ def delete_book(book_id):
     return redirect(url_for("get_books"))
 
 
+# Create add_genre
+@app.route('/add_genre')
+def add_genre():
+    return render_template("addgenre.html")
+
+
+# Create insert genre method to add new genre to the db
+@app.route('/insert_genre', methods=["POST"])
+def insert_genre():
+    genres = mongo.db.Genres
+    genres.insert_one(request.form.to_dict())
+    return redirect(url_for('get_books'))
+
+
 # Configuration of the app using env vars
 if __name__ == '__main__':
-    app.run(host=os.environ.get('IP'), 
-    port=int(os.environ.get('PORT')), 
-    debug=True)
+    app.run(host=os.environ.get('IP'),
+            port=int(os.environ.get('PORT')),
+            debug=True)

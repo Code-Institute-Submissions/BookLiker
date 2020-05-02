@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html>
+  <head>
+    <title>Add new book</title>
+  </head>
+  <body>
+    <!--Form to call insert_book-->
+    {% block content %}
+    <form action="{{ url_for('insert_genre') }}" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="title">Genre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="genre"
+            name="genre"
+            required
+          />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-sm btn-primary">Add Genre</button>
+    </form>
+    {% endblock %}
+  </body>
+</html>
