@@ -12,7 +12,7 @@
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Genre</a>
             <div class="dropdown-menu">
             {% for genre in genres %}
-			<a class="dropdown-item" href="#">{{genre.genre}}</a>
+			<a class="dropdown-item" href="{{ url_for('filtered_books', genre=genre.genre) }}">{{genre.genre}}</a>
             {% endfor %}
         </li>
         <li class="nav-item">

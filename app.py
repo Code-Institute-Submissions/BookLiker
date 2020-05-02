@@ -108,6 +108,15 @@ def insert_genre():
     return redirect(url_for('get_books'))
 
 
+# Create filter method to filter books by genre
+@app.route('/filtered_books/<genre>')
+def filtered_books(genre):
+    books = mongo.db.Books
+    results = books.find({"genre": genre})
+    return render_template("filteredbooks.html",
+                           books=results, genres=mongo.db.Genres.find())
+
+
 # Configuration of the app using env vars
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
