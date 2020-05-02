@@ -67,6 +67,22 @@ def edit_book(book_id):
     return render_template("editbook.html", 
     book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}))
 
+# Create update book method so can be called from the edit book page
+@app.route('/update_book/<book_id>', methods=["POST"])
+def update_book(book_id):
+    book=mongo.db.Books.update_one(
+        {"_id": ObjectId(book_id)}, 
+        { "$set": {
+            'title':request.form.get('title'),
+            'author':request.form.get('author'),
+            'description':request.form.get('description'),
+            'url_to_buy':request.form.get('url_to_buy'),
+            'image_url':request.form.get('image_url'),
+            'genre':request.form.get('genre'),
+        } }
+    )
+    return redirect(url_for("get_books"))
+
 
 # Configuration of the app using env vars
 if __name__ == '__main__':

@@ -7,7 +7,7 @@
   <body>
     <!--Form to call update_book-->
     {% block content %}
-    <form action="" method="POST">
+    <form action="{{ url_for('update_book', book_id=book._id) }}" method="POST">
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="title">Title</label>
@@ -17,6 +17,7 @@
             id="title"
             name="title"
             placeholder="{{book.title}}"
+            value="{{book.title}}"
             required
           />
         </div>
@@ -28,6 +29,7 @@
             id="author"
             name="author"
             placeholder="{{book.author}}"
+            value="{{book.author}}"
             required
           />
         </div>
@@ -40,6 +42,7 @@
           id="description"
           name="description"
           placeholder="{{book.description}}"
+          value="{{book.description}}"
           required
         />
       </div>
@@ -52,6 +55,7 @@
             id="url_to_buy"
             name="url_to_buy"
             placeholder="{{book.url_to_buy}}"
+            value="{{book.url_to_buy}}"
             required
           />
         </div>
@@ -63,6 +67,7 @@
           id="image_url"
           name="image_url"
           placeholder="{{book.image_url}}"
+          value="{{book.image_url}}"
           required
         />
         </div>
