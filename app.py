@@ -78,9 +78,16 @@ def update_book(book_id):
             'description':request.form.get('description'),
             'url_to_buy':request.form.get('url_to_buy'),
             'image_url':request.form.get('image_url'),
-            'genre':request.form.get('genre'),
+            'genre':"",
         } }
     )
+    return redirect(url_for("get_books"))
+
+
+# Create delete_book to remove book from the db can be called from edit_book
+@app.route('/delete_book/<book_id>', methods=["GET", "POST"])
+def delete_book(book_id):
+    mongo.db.Books.remove({'_id': ObjectId(book_id)})
     return redirect(url_for("get_books"))
 
 
