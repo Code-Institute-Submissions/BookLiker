@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -44,6 +44,22 @@ def dislike_this(book_id):
 def about_book(book_id):
     return render_template("aboutbook.html", 
     book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}))
+
+
+
+# Create add_book method to redirect to the form page where can add new book to the library
+# then call insert_book method to insert to the collection
+# Called from the top nav bar
+@app.route('/add_book')
+def add_book():
+    return render_template("addbook.html")
+
+# Create insert_book to be called from the add book form
+@app.route('/insert_book', methods=["POST"])
+def insert_book():
+    books = mongo.db.Books
+    books.insert_one(request.form.to_dict())
+    return redirect(url_for('get_books'))
 
 
 # Configuration of the app using env vars
