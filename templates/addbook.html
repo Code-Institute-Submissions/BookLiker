@@ -73,26 +73,6 @@
             required
           />
         </div>
-        <div class="input-field col s12">
-          <select id="gen" name="gen">
-            <option value="" disabled selected>Choose Genre</option>
-            {% for gen in genres %}
-            <option value="{{gen.genre}}">{{gen.genre}}</option>
-            {% endfor %}
-          </select>
-          <label>Book Genre</label>
-        </div>
-		<div class="col-md-3 mb-3">
-			<label for="gen">Genre</label>
-			<select class="custom-select" id="genre" required>
-		        <option selected disabled value="">Choose...</option>
-				{% for gen in genres %}
-				<option value="{{gen.genre}}">{{gen.genre}}</option>
-				{% endfor %}
-		      </select>
-			<div class="invalid-feedback">
-				Please select a valid genre.
-			</div>
         <button type="submit" class="btn btn-sm btn-primary">Add book</button>
       </div>
     </form>
