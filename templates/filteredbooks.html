@@ -8,13 +8,13 @@
   <body>
     {% block content %} {% for book in books %}
 
-    <div class="col-lg-4 d-flex">
-      <div class="card lg-3" style="max-width: 540px; margin-top: 20px;">
+    <div class="book-card col-12 col-lg-4 d-flex">
+      <div class="card lg-3" style="margin-top: 20px;">
         <div class="row no-gutters">
-          <div class="col-md-4">
+          <div class="col-12 col-md-4">
             <img
               src="{{ book.image_url }}"
-              class="img-fluid"
+              class="card-img"
               alt="Book cover iamge"
               style="margin: 5px 5px 5px 5px; max-width: 110px;"
             />
@@ -31,7 +31,7 @@
                   >Buy it online</a
                 >
               </button>
-              <button class="btn btn-sm btn-light">
+              <button class="btn btn-sm btn-info">
                 <a
                   href="{{ url_for('about_book', book_id=book._id) }}"
                   style="text-decoration: none;"
@@ -39,13 +39,15 @@
                 >
               </button>
               <button class="btn btn-sm">
-                <a href="{{ url_for('like_this', book_id=book._id) }}">likes</a>
+                <a href="{{ url_for('like_this', book_id=book._id) }}"
+                  ><i class="fas fa-heart fa-2x"></i
+                ></a>
               </button>
               <span>{{book.likes}}</span>
               <button class="btn btn-sm">
                 <a href="{{ url_for('dislike_this', book_id=book._id) }}"
-                  >dislikes</a
-                >
+                  ><i class="fas fa-heart-broken fa-2x"></i
+                ></a>
               </button>
               <span>{{book.dislikes}}</span>
             </div>

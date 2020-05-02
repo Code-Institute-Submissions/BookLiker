@@ -36,3 +36,7 @@ a {
 i {
   background-color: blue;
 }
+
+.sm-card {
+  max-width: fit-content;
+}
