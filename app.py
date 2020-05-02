@@ -19,7 +19,8 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_books')
 def get_books():
-    return render_template("books.html", books=mongo.db.Books.find(), genres=mongo.db.Genres.find())
+    return render_template("books.html",
+                           books=mongo.db.Books.find(), genres=mongo.db.Genres.find())
 
 
 # Creating like function what updates one book entry using it's _id
@@ -45,7 +46,7 @@ def dislike_this(book_id):
 @app.route('/about_book/<book_id>')
 def about_book(book_id):
     return render_template("aboutbook.html",
-                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}))
+                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}), genres=mongo.db.Genres.find())
 
 
 # Create add_book method to redirect to the form page where can add new book to the library
@@ -53,7 +54,7 @@ def about_book(book_id):
 # Called from the top nav bar
 @app.route('/add_book')
 def add_book():
-    return render_template("addbook.html")
+    return render_template("addbook.html", genres=mongo.db.Genres.find())
 
 # Create insert_book to be called from the add book form
 @app.route('/insert_book', methods=["POST"])
@@ -67,7 +68,7 @@ def insert_book():
 @app.route('/edit_book/<book_id>', methods=["GET"])
 def edit_book(book_id):
     return render_template("editbook.html",
-                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}))
+                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}), genres=mongo.db.Genres.find())
 
 # Create update book method so can be called from the edit book page
 @app.route('/update_book/<book_id>', methods=["POST"])
@@ -96,7 +97,7 @@ def delete_book(book_id):
 # Create add_genre
 @app.route('/add_genre')
 def add_genre():
-    return render_template("addgenre.html")
+    return render_template("addgenre.html", genres=mongo.db.Genres.find())
 
 
 # Create insert genre method to add new genre to the db

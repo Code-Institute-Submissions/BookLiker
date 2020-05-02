@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 <html>
-  <head> 
-  <title>Add new book</title>
+  <head>
+    <title>Add new book</title>
   </head>
   <body>
     <!--Form to call insert_book-->
@@ -45,7 +45,10 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-12">
-          <label for="url_to_buy">Please insert link to an online bookshop's page about this book.</label>
+          <label for="url_to_buy"
+            >Please insert link to an online bookshop's page about this
+            book.</label
+          >
           <input
             type="text"
             class="form-control"
@@ -56,17 +59,42 @@
           />
         </div>
         <div class="form-group col-md-12">
-          <label for="image_url">Please insert an image url. Commonly used the images are from wikipedia, just find the book, click on the image and then right click and copy image location.</label>
-        <input
-          type="text"
-          class="form-control"
-          id="image_url"
-          name="image_url"
-          placeholder="Link to online shop"
-          required
-        />
+          <label for="image_url"
+            >Please insert an image url. Commonly used the images are from
+            wikipedia, just find the book, click on the image and then right
+            click and copy image location.</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="image_url"
+            name="image_url"
+            placeholder="Link to online shop"
+            required
+          />
         </div>
-      <button type="submit" class="btn btn-sm btn-primary">Add book</button>
+        <div class="input-field col s12">
+          <select id="gen" name="gen">
+            <option value="" disabled selected>Choose Genre</option>
+            {% for gen in genres %}
+            <option value="{{gen.genre}}">{{gen.genre}}</option>
+            {% endfor %}
+          </select>
+          <label>Book Genre</label>
+        </div>
+		<div class="col-md-3 mb-3">
+			<label for="gen">Genre</label>
+			<select class="custom-select" id="genre" required>
+		        <option selected disabled value="">Choose...</option>
+				{% for gen in genres %}
+				<option value="{{gen.genre}}">{{gen.genre}}</option>
+				{% endfor %}
+		      </select>
+			<div class="invalid-feedback">
+				Please select a valid genre.
+			</div>
+        <button type="submit" class="btn btn-sm btn-primary">Add book</button>
+      </div>
     </form>
     {% endblock %}
   </body>
