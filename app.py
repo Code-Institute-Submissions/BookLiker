@@ -46,7 +46,6 @@ def about_book(book_id):
     book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}))
 
 
-
 # Create add_book method to redirect to the form page where can add new book to the library
 # then call insert_book method to insert to the collection
 # Called from the top nav bar
@@ -60,6 +59,13 @@ def insert_book():
     books = mongo.db.Books
     books.insert_one(request.form.to_dict())
     return redirect(url_for('get_books'))
+
+
+# Create edit book where can update or delete a book methods can be called from
+@app.route('/edit_book/<book_id>', methods=["GET"])
+def edit_book(book_id):
+    return render_template("editbook.html", 
+    book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}))
 
 
 # Configuration of the app using env vars
