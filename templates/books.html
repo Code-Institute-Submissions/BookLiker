@@ -40,16 +40,18 @@
                   </button>
                   <button class="btn btn-sm">
                     <a
-                      href=""
+                      href="{{ url_for('like_this', book_id=book._id) }}"
                       >likes</a
                     >
                   </button>
+                  <span>{{book.likes}}</span>
                    <button class="btn btn-sm">
                     <a
-                      href=""
+                      href="{{ url_for('dislike_this', book_id=book._id) }}"
                       >dislikes</a
                     >
                   </button>
+                  <span>{{book.dislikes}}</span>
                 </div>
               </div>
             </div>
