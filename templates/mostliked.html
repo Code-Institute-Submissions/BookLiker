@@ -7,6 +7,29 @@
 </head>
 
 <body>
+	{% block navul %}
+	<li class="nav-item">
+		<a class="nav-link" href="{{ url_for('get_books') }}">All Books</a>
+	</li>
+	<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+			aria-expanded="false">Genre</a>
+		<div class="dropdown-menu">
+			{% for genre in genres %}
+			<a class="dropdown-item" href="{{ url_for('filtered_books', genre=genre.genre) }}">{{genre.genre}}</a>
+			{% endfor %}
+		</div>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="{{ url_for('add_book') }}">Add New Book</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="{{ url_for('add_genre') }}">Add New Genre</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link active" href="{{ url_for('most_liked') }}">Most liked Ones</a>
+	</li>
+	{% endblock %}
 	{% block content %} {% for book in books %}
 
 	<div class="book-card col-12 col-lg-4 d-flex">

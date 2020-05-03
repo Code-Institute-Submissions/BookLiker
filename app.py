@@ -14,6 +14,7 @@ app.config["MONGO_URI"] = os.environ.get('MONGO_URI')
 # Define mongo connection method using PyMongo
 mongo = PyMongo(app)
 
+
 # Define app entry route and main page url
 # using render template method and add db query
 @app.route('/')
@@ -115,6 +116,14 @@ def filtered_books(genre):
     results = books.find({"genre": genre})
     return render_template("filteredbooks.html",
                            books=results, genres=mongo.db.Genres.find())
+
+
+# Create filtered view for the mosted liked 9 books
+@app.route('/most_liked')
+def most_liked():
+    books = mongo.db.Books
+    results = books.find().sort([('likes', -1)]).limit(9)
+    return render_template("mostliked.html", books=results, genres=mongo.db.Genres.find())
 
 
 # Configuration of the app using env vars
