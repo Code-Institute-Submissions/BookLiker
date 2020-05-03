@@ -46,7 +46,7 @@ def dislike_this(book_id):
 @app.route('/about_book/<book_id>')
 def about_book(book_id):
     return render_template("aboutbook.html",
-                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}))
+                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}), genres=mongo.db.Genres.find())
 
 
 # Create add_book method to redirect to the form page where can add new book to the library
@@ -68,7 +68,7 @@ def insert_book():
 @app.route('/edit_book/<book_id>', methods=["GET"])
 def edit_book(book_id):
     return render_template("editbook.html",
-                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}), genres=mongo.db.Genres.find())
+                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}), gens=mongo.db.Genres.find())
 
 # Create update book method so can be called from the edit book page
 @app.route('/update_book/<book_id>', methods=["POST"])
@@ -81,7 +81,7 @@ def update_book(book_id):
             'description': request.form.get('description'),
             'url_to_buy': request.form.get('url_to_buy'),
             'image_url': request.form.get('image_url'),
-            'genre': "",
+            'genre': request.form.get('genre'),
         }}
     )
     return redirect(url_for("get_books"))

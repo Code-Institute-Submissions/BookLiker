@@ -5,6 +5,30 @@
     <title>Add new book</title>
   </head>
   <body>
+    {% block navul %}
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('get_books') }}">All Books</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a
+        class="nav-link dropdown-toggle disabled"
+        data-toggle="dropdown"
+        href="#"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+        >Genre</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="{{ url_for('add_book') }}"
+        >Add New Book</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('add_genre') }}">Add New Genre</a>
+    </li>
+    {% endblock %}
     <!--Form to call insert_book-->
     {% block content %}
     <form action="{{ url_for('insert_book') }}" method="POST">
@@ -54,7 +78,7 @@
             class="form-control"
             id="url_to_buy"
             name="url_to_buy"
-            placeholder="Link to a cover image"
+            placeholder="Link to buy"
             required
           />
         </div>
@@ -69,13 +93,13 @@
             class="form-control"
             id="image_url"
             name="image_url"
-            placeholder="Link to online shop"
+            placeholder="Link to the image"
             required
           />
         </div>
         <div class="col-auto my-1">
           <select name="genre" class="custom-select mr-sm-2" id="genre">
-            <option selected disabled>Genres</option>
+            <option selected disabled>Genre</option>
             {% for genre in gens %}
             <option value="{{genre.genre}}">{{genre.genre}}</option>
             {% endfor %}

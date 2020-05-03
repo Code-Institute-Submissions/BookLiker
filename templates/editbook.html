@@ -5,8 +5,25 @@
   <title>Add new book</title>
   </head>
   <body>
+    {% block navul %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('get_books') }}">All Books</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle disabled" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                aria-expanded="false">Genre</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('add_book') }}">Add New Book</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('add_genre') }}">Add New Genre</a>
+        </li>
+    {% endblock %}
+  
     <!--Form to call update_book-->
     {% block content %}
+    <h1>Edit {{book.title}}</h1>
     <form action="{{ url_for('update_book', book_id=book._id) }}" method="POST">
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -70,6 +87,14 @@
           required
         />
         </div>
+		<div class="col-auto my-1">
+			<select name="genre" class="custom-select mr-sm-2" id="genre">
+		            <option selected disabled>Genre</option>
+		            {% for genre in gens %}
+		            <option value="{{genre.genre}}">{{genre.genre}}</option>
+		            {% endfor %}
+		          </select>
+		</div>
         <button type="submit" class="btn btn-sm btn-primary">Update book</button>
         
         </form>
