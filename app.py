@@ -46,7 +46,7 @@ def dislike_this(book_id):
 @app.route('/about_book/<book_id>')
 def about_book(book_id):
     return render_template("aboutbook.html",
-                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}), genres=mongo.db.Genres.find())
+                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}))
 
 
 # Create add_book method to redirect to the form page where can add new book to the library
@@ -54,7 +54,7 @@ def about_book(book_id):
 # Called from the top nav bar
 @app.route('/add_book')
 def add_book():
-    return render_template("addbook.html", genres=mongo.db.Genres.find())
+    return render_template("addbook.html", gens=mongo.db.Genres.find())
 
 # Create insert_book to be called from the add book form
 @app.route('/insert_book', methods=["POST"])

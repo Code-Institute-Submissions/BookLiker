@@ -73,9 +73,18 @@
             required
           />
         </div>
+        <div class="col-auto my-1">
+          <select name="genre" class="custom-select mr-sm-2" id="genre">
+            <option selected disabled>Genres</option>
+            {% for genre in gens %}
+            <option value="{{genre.genre}}">{{genre.genre}}</option>
+            {% endfor %}
+          </select>
+        </div>
         <button type="submit" class="btn btn-sm btn-primary">Add book</button>
       </div>
     </form>
+
     {% endblock %}
   </body>
 </html>
