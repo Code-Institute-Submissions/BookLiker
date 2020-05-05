@@ -31,11 +31,11 @@
 		<li class="nav-item">
 			<a class="nav-link" href="{{ url_for('add_genre') }}">Add New Genre</a>
 		</li>
-        <li class="nav-item">
+		<li class="nav-item">
 			<a class="nav-link" href="{{ url_for('most_liked') }}">Most liked Ones</a>
 		</li>
 		{% endblock %}
-		
+
 	</ul>
 
 	<div class="container">
@@ -54,12 +54,12 @@
 	</script>
 	<script type="text/javascript">
 		$(document).ready(function () {
-        $(window).resize(function () {
-          if ($(window).width() <= 993) {
-            $(".book-card").removeClass("d-flex");
-          } else {
-            $(".book-card").addClass("d-flex");
-          }
+            $(window).resize(function () {
+            if ($(window).width() <= 993) {
+                $(".book-card").removeClass("d-flex");
+            } else {
+                $(".book-card").addClass("d-flex");
+            }
         });
       });
 	</script>

@@ -8,54 +8,59 @@
 
 <body>
 	{% block content %} {% for book in books %}
-
 	<div class="book-card col-12 col-lg-4 d-flex">
 		<div class="card lg-3" style="margin-top: 20px;">
 			<div class="row no-gutters">
-				<div class="col-12 col-md-4">
+				<div class="col-6 col-md-4">
 					<img
-              src="{{ book.image_url }}"
-              class="card-img"
-              alt="Book cover iamge"
-              style="margin: 5px 5px 5px 5px; max-width: 110px;"
-            />
-          </div>
-					<div class="col-md-8">
+					              src="{{ book.image_url }}"
+					              class="card-img responsive"
+					              alt="Book cover image"
+					            />
+				</div>
+					<div class="col-6 col-md-8">
 						<div class="card-body">
 							<h5 class="book-title">{{book.title}}</h5>
 							<h6 class="book-author">{{book.author}}</h6>
-							<button class="btn btn-sm btn-warning">
-                <a
-                  href="{{book.url_to_buy}}"
-                  target="blank"
-                  style="text-decoration: none;"
-                  >Buy it online</a
-                >
-              </button>
-							<button class="btn btn-sm btn-info">
-                <a
-                  href="{{ url_for('about_book', book_id=book._id) }}"
-                  style="text-decoration: none;"
-                  >More info</a
-                >
-              </button>
+						</div>
+						<div class="card-buttons">
+							<button class="btn btn-sm btn-warning buy-button">
+																                <a
+																                  href="{{book.url_to_buy}}"
+																                  target="blank"
+																                  style="text-decoration: none;"
+																                  >Buy it online</a
+																                >
+																</button>
+
+							<button class="btn btn-sm btn-info info-button">
+																    <a
+																                  href="{{ url_for('about_book', book_id=book._id) }}"
+																                  style="text-decoration: none;"
+																                  >More info</a
+																                >
+																</button>
+						</div>
+						<div class="votes">
 							<button class="btn btn-sm">
-                <a href="{{ url_for('like_this', book_id=book._id) }}"
-                  ><i class="fas fa-heart fa-2x"></i
-                ></a>
-              </button>
+																    <a href="{{ url_for('like_this', book_id=book._id) }}"
+																                  ><i class="fas fa-heart fa-2x"></i
+																                ></a>
+																</button>
 							<span>{{book.likes}}</span>
+
 							<button class="btn btn-sm">
-                <a href="{{ url_for('dislike_this', book_id=book._id) }}"
-                  ><i class="fas fa-heart-broken fa-2x"></i
-                ></a>
-              </button>
+						                                            <a href="{{ url_for('dislike_this', book_id=book._id) }}"
+						                                                        ><i class="fas fa-heart-broken fa-2x"></i
+						                                                        ></a>
+						                                        </button>
 							<span>{{book.dislikes}}</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
 
 		{% endfor %}{% endblock content %}
 </body>
