@@ -11,23 +11,11 @@ body {
   background-image: url("../images/main-bg.jpg");
 }
 
-.nav {
-  margin-bottom: 10px;
+.nav .nav-tabs {
+  border-bottom: none;
 }
 
-a.nav-link {
-  color: white;
-  margin-top: -10px;
-}
 
-a.nav-link:hover {
-  color: grey;
-}
-
-ul.nav {
-  padding-top: 10px;
-  background-color: #2f374e;
-}
 
 a {
   color: white;
@@ -66,6 +54,10 @@ h1 {
   position: relative;
 }
 
-.alert{
-    display: none;
+.alert {
+  display: none;
+}
+
+.sub-drop {
+  margin-top: 15px;
 }
