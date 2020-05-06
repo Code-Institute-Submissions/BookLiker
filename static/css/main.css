@@ -53,19 +53,15 @@ h1 {
 }
 
 .card-buttons {
-  padding-left: 35px;
-  margin-bottom: 15px;
+  padding-left: 20px;
+  margin-bottom: 5px;
 }
 
 .votes {
-  padding-left: 25px;
+  padding-left: 15px;
 }
 
-.buy-button {
-  margin-bottom: 10px;
+.buy-button .info-button {
+  margin-bottom: 15px;
   position: relative;
-}
-
-.info-button {
-  position: center;
 }
