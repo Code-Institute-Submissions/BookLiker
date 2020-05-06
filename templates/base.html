@@ -56,6 +56,16 @@
         >
       </li>
       {% endblock %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('alphabetical_title') }}"
+          >By title</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('alphabetical_author') }}"
+          >By Author</a
+        >
+      </li>
     </ul>
 
     <div class="container">
@@ -98,6 +108,12 @@
         $(window).scrollTop(sessionStorage.scrollPos || 0);
       };
       window.onload = init;
+
+      $(document).ready(function () {
+        $("#delete-button").click(function () {
+          $("#delete-alert").show();
+        });
+      });
     </script>
   </body>
 </html>

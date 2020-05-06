@@ -1,69 +1,102 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 <html>
+  <head>
+    <title>About</title>
+  </head>
 
-<head>
-	<title>About</title>
-</head>
-
-<body>
-	{% block navul %}
-	<li class="nav-item">
-		<a class="nav-link" href="{{ url_for('get_books') }}">All Books</a>
-	</li>
-	<li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-			aria-expanded="false">Genre</a>
-		<div class="dropdown-menu">
-			{% for genre in genres %}
-			<a class="dropdown-item" href="{{ url_for('filtered_books', genre=genre.genre) }}">{{genre.genre}}</a>
-			{% endfor %}
-		</div>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="{{ url_for('add_book') }}">Add New Book</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="{{ url_for('add_genre') }}">Add New Genre</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="{{ url_for('most_liked') }}">Most liked Ones</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link active" href="#">About {{book.title}}</a>
-	</li>
-	{% endblock %}
-	{% block content %}
-	<div class="card mb-3" style="max-width: fit-content;">
-		<div class="row no-gutters">
-			<div class="col-md-3">
-				<img
+  <body>
+    {% block navul %}
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('get_books') }}">All Books</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a
+        class="nav-link dropdown-toggle"
+        data-toggle="dropdown"
+        href="#"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+        >Genre</a
+      >
+      <div class="dropdown-menu">
+        {% for genre in genres %}
+        <a
+          class="dropdown-item"
+          href="{{ url_for('filtered_books', genre=genre.genre) }}"
+          >{{genre.genre}}</a
+        >
+        {% endfor %}
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('add_book') }}">Add New Book</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('add_genre') }}">Add New Genre</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('most_liked') }}">Most liked Ones</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="#">About {{book.title}}</a>
+    </li>
+    {% endblock %} {% block content %}
+    <div class="card mb-3" style="max-width: fit-content;">
+      <div class="row no-gutters">
+        <div class="col-md-3">
+          <img
             src="{{book.image_url}}"
             class="card-img"
             alt="Book Cover Image"
           />
         </div>
-				<div class="col-md-9">
-					<div class="card-body">
-						<h2 class="card-title" style="text-align: center;">
-							{{book.title}}
-						</h2>
-						<h2 style="text-align: center;">Written by {{book.author}}</h2>
-						<p class="card-text" style="font-size: x-large;">
-							{{book.description}}
-						</p>
-						<div>
-							<button class="btn btn-sm btn-warning">
+        <div class="col-md-9">
+          <div class="card-body">
+            <h2 class="card-title" style="text-align: center;">
+              {{book.title}}
+            </h2>
+            <h2 style="text-align: center;">Written by {{book.author}}</h2>
+            <h2 style="text-align: center;">Genre: {{book.genre}}</h2>
+            <p class="card-text" style="font-size: x-large;">
+              {{book.description}}
+            </p>
+
+            <div class="card-buttons">
+              <button class="btn btn-sm btn-danger">
                 <a href="{{ url_for('edit_book', book_id=book._id) }}"
                   >Edit this book</a
                 >
               </button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		{% endblock %}
-</body>
+              <button class="btn btn-sm btn-warning buy-button">
+                <a
+                  href="{{book.url_to_buy}}"
+                  target="blank"
+                  style="text-decoration: none;"
+                  >Buy it online</a
+                >
+              </button>
+            </div>
+            <div class="votes">
+              <button class="btn btn-sm like-button">
+                <a href="{{ url_for('like_this', book_id=book._id) }}"
+                  ><i class="fas fa-heart fa-2x"></i
+                ></a>
+              </button>
+              <span>{{book.likes}}</span>
 
+              <button class="btn btn-sm dislike-button">
+                <a href="{{ url_for('dislike_this', book_id=book._id) }}"
+                  ><i class="fas fa-heart-broken fa-2x"></i
+                ></a>
+              </button>
+              <span>{{book.dislikes}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </body>
 </html>

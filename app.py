@@ -114,7 +114,7 @@ def insert_genre():
 def filtered_books(genre):
     books = mongo.db.Books
     results = books.find({"genre": genre})
-    return render_template("filteredbooks.html",
+    return render_template("books.html",
                            books=results, genres=mongo.db.Genres.find())
 
 
@@ -123,7 +123,18 @@ def filtered_books(genre):
 def most_liked():
     books = mongo.db.Books
     results = books.find().sort([('likes', -1)]).limit(9)
-    return render_template("mostliked.html", books=results, genres=mongo.db.Genres.find())
+    return render_template("books.html", books=results, genres=mongo.db.Genres.find())
+
+# Create alphabetical ordered book list
+@app.route('/alphabetical_title')
+def alphabetical_title():
+    return render_template("books.html", books=mongo.db.Books.find().sort("title"), genres=mongo.db.Genres.find())
+
+
+# Create alphabetical ordered book list
+@app.route('/alphabetical_author')
+def alphabetical_author():
+    return render_template("books.html", books=mongo.db.Books.find().sort("author"), genres=mongo.db.Genres.find())
 
 
 # Configuration of the app using env vars

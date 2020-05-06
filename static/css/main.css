@@ -61,11 +61,11 @@ h1 {
   padding-left: 25px;
 }
 
-.buy-button {
+.buy-button .info-button {
   margin-bottom: 10px;
   position: relative;
 }
 
-.info-button {
-  position: center;
+.alert{
+    display: none;
 }
