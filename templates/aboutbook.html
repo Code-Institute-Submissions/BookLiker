@@ -45,14 +45,14 @@
     {% endblock %} {% block content %}
     <div class="card mb-3" style="max-width: fit-content;">
       <div class="row no-gutters">
-        <div class="col-md-3">
+        <div id="img-about" class="col-md-3 col-lg-4">
           <img
             src="{{book.image_url}}"
             class="card-img"
             alt="Book Cover Image"
           />
         </div>
-        <div class="col-md-9">
+        <div id="content-about" class="col-md-9 col-lg-8">
           <div class="card-body">
             <h2 class="card-title" style="text-align: center;">
               {{book.title}}

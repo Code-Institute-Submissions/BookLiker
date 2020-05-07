@@ -15,14 +15,13 @@ body {
   border-bottom: none;
 }
 
-
-
 a {
   color: white;
 }
 
 i {
-  background-color: blue;
+  color: #e74d58;
+  background: none;
 }
 
 .sm-card {
@@ -58,6 +57,6 @@ h1 {
   display: none;
 }
 
-.sub-drop {
-  margin-top: 15px;
+.button-info {
+  background: #2f374e;
 }

@@ -35,10 +35,16 @@
                 >
               </button>
 
-              <button class="btn btn-sm btn-info info-button">
+              <button class="btn btn-sm info-button">
                 <a
                   href="{{ url_for('about_book', book_id=book._id) }}"
-                  style="text-decoration: none;"
+                  style="
+                    text-decoration: none;
+                    padding: 4px 8px 4px 8px;
+                    margin: 5px 5px 5px 5px;
+                    background: #7484b1;
+                    color: white;
+                  "
                   >More info</a
                 >
               </button>
@@ -46,14 +52,20 @@
             <div class="votes">
               <button class="btn btn-sm like-button">
                 <a href="{{ url_for('like_this', book_id=book._id) }}"
-                  ><i class="fas fa-heart fa-2x"></i
+                  ><i
+                    class="fa fa-heart fa-2x"
+                    style="color: #e74d58; background: none;"
+                  ></i
                 ></a>
               </button>
               <span>{{book.likes}}</span>
 
               <button class="btn btn-sm dislike-button">
                 <a href="{{ url_for('dislike_this', book_id=book._id) }}"
-                  ><i class="fas fa-heart-broken fa-2x"></i
+                  ><i
+                    class="fa fa-heart-broken fa-2x"
+                    style="color: #e74d58; background: none;"
+                  ></i
                 ></a>
               </button>
               <span>{{book.dislikes}}</span>
