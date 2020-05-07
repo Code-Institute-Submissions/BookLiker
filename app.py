@@ -55,7 +55,7 @@ def about_book(book_id):
 # Called from the top nav bar
 @app.route('/add_book')
 def add_book():
-    return render_template("addbook.html", gens=mongo.db.Genres.find())
+    return render_template("addbook.html", gens=mongo.db.Genres.find(), genres=mongo.db.Genres.find())
 
 # Create insert_book to be called from the add book form
 @app.route('/insert_book', methods=["POST"])
