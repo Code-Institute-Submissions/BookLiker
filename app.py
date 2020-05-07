@@ -140,7 +140,9 @@ def alphabetical_author():
 # Create route for sort form
 @app.route('/sort')
 def sort():
-    return render_template("sortbooks.html", books=mongo.db.Books.find().sort("author"), genres=mongo.db.Genres.find())
+    # create instance from the full db
+    authors = []
+    return render_template("sortbooks.html", books=mongo.db.Books.find().sort("author"), genres=mongo.db.Genres.find(), names=authors)
 
 
 # Configuration of the app using env vars
