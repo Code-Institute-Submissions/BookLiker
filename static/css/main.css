@@ -7,10 +7,6 @@ label {
   color: white;
 }
 
-body {
-  background-image: url("../images/main-bg.jpg");
-}
-
 .nav .nav-tabs {
   border-bottom: none;
 }

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+<html>
+
+<head>
+	<title>Add new book</title>
+</head>
+
+<body>
+	{% block navul %}
+	<li class="nav-item">
+		<a class="nav-link" href="{{ url_for('get_books') }}">All Books</a>
+	</li>
+	<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle disabled" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+			aria-expanded="false">Genre</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="{{ url_for('add_book') }}">Add New Book</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="{{ url_for('add_genre') }}">Add New Genre</a>
+	</li>
+	{% endblock %}
+
+	<!--Form to call update_book-->
+	{% block content %}
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		Be careful! These changes are permanent!
+		<button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+	</div>
+	<div>
+		<h1>Edit {{book.title}}</h1>
+	</div>
+	<form action="{{ url_for('update_book', book_id=book._id) }}" method="POST">
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="title">Title</label>
+				<input
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            placeholder="{{book.title}}"
+            value="{{book.title}}"
+            required
+          />
+        </div>
+				<div class="form-group col-md-6">
+					<label for="author">Author</label>
+					<input
+            type="text"
+            class="form-control"
+            id="author"
+            name="author"
+            placeholder="{{book.author}}"
+            value="{{book.author}}"
+            required
+          />
+        </div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-12 col-lg-12">
+						<label for="description">About the book</label>
+						<textarea
+            type="text"
+            class="form-control"
+            id="description"
+            name="description"
+            placeholder="{{book.description}}"
+            required
+          >
+{{book.description}}</textarea>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<label for="url_to_buy"
+            >Please insert link to an online bookshop's page about this
+            book.</label>
+						<input
+            type="text"
+            class="form-control"
+            id="url_to_buy"
+            name="url_to_buy"
+            placeholder="{{book.url_to_buy}}"
+            value="{{book.url_to_buy}}"
+            required
+          />
+        </div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label for="image_url"
+            >Please insert an image url. Commonly used the images are from
+            wikipedia, just find the book, click on the image and then right
+            click and copy image location.</label>
+							<input
+            type="text"
+            class="form-control"
+            id="image_url"
+            name="image_url"
+            placeholder="{{book.image_url}}"
+            value="{{book.image_url}}"
+            required
+          />
+        </div>
+						</div>
+						<div class="form-row">
+							<div class="col-auto my-1">
+								<label for="genre_choice">Choose Genre</label>
+								<select name="genre" class="custom-select mr-sm-2" id="genre">
+            {% for genre in gens %}
+            <option value="{{genre.genre}}">{{genre.genre}}</option>
+            {% endfor %}
+          </select>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-sm btn-primary">
+        Update book
+      </button>
+	</form>
+	<div class="row">
+		<div class="col-md-12">
+			<button
+          id="delete-button"
+          class="delete-button btn btn-sm btn-danger pull-right"
+        >
+          Delete book
+        </button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div id="delete-alert" class="delete-alert alert alert-warning alert-dismissible fade" role="alert">
+				<strong>Are you Sure?</strong> This will permanently delete this book
+				from the library!
+				<a href="{{ url_for('delete_book', book_id=book._id) }}">Delete book</a>
+				<button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+			</div>
+		</div>
+	</div>
+	{% endblock %}
+</body>
+
+</html>

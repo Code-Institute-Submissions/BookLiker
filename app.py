@@ -137,6 +137,12 @@ def alphabetical_author():
     return render_template("books.html", books=mongo.db.Books.find().sort("author"), genres=mongo.db.Genres.find())
 
 
+# Create route for sort form
+@app.route('/sort')
+def sort():
+    return render_template("sortbooks.html", books=mongo.db.Books.find().sort("author"), genres=mongo.db.Genres.find())
+
+
 # Configuration of the app using env vars
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
