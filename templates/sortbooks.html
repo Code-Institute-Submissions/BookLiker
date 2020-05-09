@@ -8,13 +8,24 @@
 
 <body>
 	{% block content %}
-	{% for book in books %}
 
-	<p>{{book.author}}</p>
-
-	{% endfor %}
-
-	{% endblock content %}
+	<div class="dropdown">
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Authors	  </button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			{% for i in names %}
+			<a class="dropdown-item" href="#">{{i}}</a>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="dropdown">
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Genres</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			{% for i in cats %}
+			<a class="dropdown-item" href="#">{{i}}</a>
+			{% endfor %}
+		</div>
+	</div>
+	{% endblock %}
 </body>
 
 </html>
