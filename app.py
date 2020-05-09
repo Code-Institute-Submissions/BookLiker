@@ -30,7 +30,7 @@ def get_books():
 def like_this(book_id):
     book = mongo.db.Books.update_one(
         {"_id": ObjectId(book_id)}, {"$inc": {'likes': 1}})
-    return redirect(url_for("get_books"))
+    return redirect(request.referrer)
 
 
 # Creating dislike function what updates one book entry using it's _id
@@ -39,7 +39,7 @@ def like_this(book_id):
 def dislike_this(book_id):
     book = mongo.db.Books.update_one({"_id": ObjectId(book_id)}, {
                                      "$inc": {'dislikes': 1}})
-    return redirect(url_for("get_books"))
+    return redirect(request.referrer)
 
 
 # Define route for about book using the book's id from mongo
