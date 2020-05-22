@@ -137,26 +137,6 @@ def alphabetical_author():
     return render_template("books.html", books=mongo.db.Books.find().sort("author"), genres=mongo.db.Genres.find())
 
 
-# Create route for sort form
-@app.route('/sort')
-def sort():
-    # create instance from the full db
-    books = mongo.db.Books.find().sort("author")
-    genres = mongo.db.Genres.find().sort("genre")
-    book_count = books.count()
-    booklist = list(books)
-    authors = ["All"]
-    cats = ["All"]
-    limit = 0
-    for i in range(0, book_count):
-        if booklist[i]["author"] not in authors:
-            authors.append(booklist[i]["author"])
-        if booklist[i]["genre"] not in cats:
-            cats.append(booklist[i]["genre"])
-    print(cats)
-    return render_template("sortbooks.html", books=books, genres=genres, names=authors, cats=cats)
-
-
 # Configuration of the app using env vars
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
