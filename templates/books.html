@@ -7,7 +7,22 @@
 </head>
 
 <body>
-	{% block content %} {% for book in books %}
+	{% block content %}
+	<div class="welcome col-12">
+		<h1>Welcome to the BookLiker app</h1>
+		<p>This is a self-maintained book collection app. You can sort or filter the books from the Sort by dropdown or
+			just check out the collection in the order the books have been added to the collection below.</p>
+		<ul>
+			<li>With the Add New Book option you can add book to the collection, please follow the instructions
+				carefully</li>
+			<li>To check the book's price on an online shop, please click on the Buy online button</li>
+			<li>For more info, or if you would like to edit a book, just click on the more info button on the book card
+			</li>
+			<li>If you would like to express that you like/dislike a book, just click on the icons on the book card</li>
+		</ul>
+
+	</div>
+	{% for book in books %}
 	<div class="book-card col-12 col-lg-4 d-flex">
 		<div class="card lg-3" style="margin-top: 20px; background-color: #a0b59f">
 			<div class="row no-gutters">
@@ -35,7 +50,7 @@
                   background: #ffc107;
                     color: white;
                   "
-                  >Buy it online</a
+                  >Buy online</a
                 >
               </button>
 

@@ -62,3 +62,7 @@ h1 {
   padding: 4px 8px 4px 8px;
   margin: 5px 5px 5px 5px;
 }
+
+.welcome {
+  text-align: center;
+}
