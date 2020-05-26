@@ -47,7 +47,7 @@ def dislike_this(book_id):
 @app.route('/about_book/<book_id>')
 def about_book(book_id):
     return render_template("aboutbook.html",
-                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}), genres=mongo.db.Genres.find())
+                           book=mongo.db.Books.find_one_or_404({"_id": ObjectId(book_id)}), genres=mongo.db.Genres.find())
 
 
 # Create add_book method to redirect to the form page where can add new book to the library
@@ -69,7 +69,7 @@ def insert_book():
 @app.route('/edit_book/<book_id>', methods=["GET"])
 def edit_book(book_id):
     return render_template("editbook.html",
-                           book=mongo.db.Books.find_one({"_id": ObjectId(book_id)}), gens=mongo.db.Genres.find())
+                           book=mongo.db.Books.find_one_or_404({"_id": ObjectId(book_id)}), gens=mongo.db.Genres.find())
 
 # Create update book method so can be called from the edit book page
 @app.route('/update_book/<book_id>', methods=["POST"])
@@ -135,6 +135,12 @@ def alphabetical_title():
 @app.route('/alphabetical_author')
 def alphabetical_author():
     return render_template("books.html", books=mongo.db.Books.find().sort("author"), genres=mongo.db.Genres.find())
+
+
+# Create error handler for 404
+@app.errorhandler(404)
+def handle_404():
+    return render_template("404.html")
 
 
 # Configuration of the app using env vars
