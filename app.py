@@ -139,8 +139,8 @@ def alphabetical_author():
 
 # Create error handler for 404
 @app.errorhandler(404)
-def handle_404():
-    return render_template("404.html")
+def handle_404(e):
+    return render_template("404.html", exception=e)
 
 
 # Configuration of the app using env vars
