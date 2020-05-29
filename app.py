@@ -20,7 +20,7 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_books')
 def get_books():
-    return render_template("home.html",
+    return render_template("index.html",
                            books=mongo.db.Books.find(), genres=mongo.db.Genres.find())
 
 
@@ -91,7 +91,7 @@ def update_book(book_id):
 # Create delete_book to remove book from the db can be called from edit_book
 @app.route('/delete_book/<book_id>', methods=["GET", "POST"])
 def delete_book(book_id):
-    mongo.db.Books.remove({'_id': ObjectId(book_id)})
+    mongo.db.Books.delete_one({'_id': ObjectId(book_id)})
     return redirect(url_for("get_books"))
 
 
