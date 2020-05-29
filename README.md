@@ -1,6 +1,7 @@
 # **BookLiker**
 
-A visitor-maintained book list with information about the books. Users can sort/or filter the books using premade functions.
+A responsive, cross-platformv, isitor-maintained book list with information about the books. Users can sort/or filter the books using premade functions.
+The app is published on Heroku, link [here](http://bookliker.herokuapp.com/). 
 
 ## Table of content
 
