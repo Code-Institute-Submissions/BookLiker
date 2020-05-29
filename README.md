@@ -174,13 +174,14 @@ As the code does not include the mongo connection string, in order to test it a 
 
 ### Content
 
-The content mainly used for the book cards are from [Wikipedia](https://www.wikipedia.org/). 
-Other content have been uploaded from various websites
-[Table of contents generated with markdown-toc](http://ecotrust-canada.github.io/markdown-toc/)
+- The content mainly used for the book cards are from [Wikipedia](https://www.wikipedia.org/). 
+- Other content have been uploaded from various websites
+- [Table of contents generated with markdown-toc](http://ecotrust-canada.github.io/markdown-toc/)
 
 
 ### Acknowledgement
-Special thanks to the tutors at Code Institute, they helped a lot to overcome some difficulties during the project
+- Special thanks to the tutors at Code Institute, they helped a lot to overcome some difficulties during the project
+
 Platforms used to get help and to test the application:
 - Stack Overflow
 - Slack
